@@ -3,48 +3,175 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meu sistema de despesas</title>
+  <title>Controle de Despesas</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      padding: 40px 20px;
+      padding: 30px 15px;
       background: #eef2ff;
       font-family: Arial, sans-serif;
     }
 
-    .card {
+    .container {
       max-width: 500px;
       margin: auto;
-      padding: 30px;
       background: white;
+      padding: 25px;
       border-radius: 16px;
-      text-align: center;
-      box-shadow: 0 4px 15px #0002;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
 
     h1 {
+      text-align: center;
       color: #2563eb;
     }
 
-    button {
-      padding: 12px 20px;
-      border: 0;
+    .saldo {
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input, select, button {
+      padding: 10px;
       border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    button {
       background: #2563eb;
       color: white;
-      font-size: 16px;
+      border: none;
+      cursor: pointer;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .entrada {
+      color: green;
+      font-weight: bold;
+    }
+
+    .saida {
+      color: red;
+      font-weight: bold;
+    }
+
+    .excluir {
+      background: #ef4444;
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 6px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Meu sistema de despesas</h1>
-    <p>Este é meu primeiro site de teste.</p>
 
-    <button onclick="alert('Está funcionando!')">
-      Testar
-    </button>
+  <div class="container">
+    <h1>Controle de Despesas</h1>
+
+    <div class="saldo">
+      Saldo: <span id="saldo">R$ 0,00</span>
+    </div>
+
+    <form id="form">
+      <input type="text" id="descricao" placeholder="Descrição" required>
+      <input type="number" id="valor" placeholder="Valor (ex: 100.50)" step="0.01" required>
+      <select id="tipo">
+        <option value="entrada">Entrada</option>
+        <option value="saida">Saída</option>
+      </select>
+      <button type="submit">Adicionar</button>
+    </form>
+
+    <ul id="lista"></ul>
   </div>
+
+  <script>
+    let lancamentos = JSON.parse(localStorage.getItem('lancamentos')) || [];
+
+    const form = document.getElementById('form');
+    const lista = document.getElementById('lista');
+    const saldoEl = document.getElementById('saldo');
+
+    function salvar() {
+      localStorage.setItem('lancamentos', JSON.stringify(lancamentos));
+    }
+
+    function atualizarTela() {
+      lista.innerHTML = '';
+      let saldo = 0;
+
+      lancamentos.forEach((item, index) => {
+        const li = document.createElement('li');
+
+        const valorFormatado = item.valor.toFixed(2).replace('.', ',');
+
+        li.innerHTML = `
+          <span>${item.descricao}</span>
+          <span class="$${item.tipo}">
+            $${item.tipo === 'entrada' ? '+' : '-'} R$ ${valorFormatado}
+          </span>
+          <button class="excluir" onclick="excluir(${index})">X</button>
+        `;
+
+        lista.appendChild(li);
+
+        saldo += item.tipo === 'entrada' ? item.valor : -item.valor;
+      });
+
+      saldoEl.textContent = 'R$ ' + saldo.toFixed(2).replace('.', ',');
+    }
+
+    function excluir(index) {
+      lancamentos.splice(index, 1);
+      salvar();
+      atualizarTela();
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const descricao = document.getElementById('descricao').value;
+      const valor = parseFloat(document.getElementById('valor').value);
+      const tipo = document.getElementById('tipo').value;
+
+      lancamentos.push({ descricao, valor, tipo });
+      salvar();
+      atualizarTela();
+
+      form.reset();
+    });
+
+    atualizarTela();
+  </script>
+
 </body>
 </html>
