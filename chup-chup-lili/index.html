@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FF6B9D" />
+  <title>Sistema Chup-Chup da Lili | Proposta Comercial</title>
+  <style>
+    :root{--pink:#FF6B9D;--pink-dark:#e84e86;--purple:#9B59B6;--purple-dark:#7f3d9f;--white:#fff;--light:#f8f5fb;--gray:#6f6b78;--dark:#241f2b;--line:#ece5f1;--shadow:0 18px 45px rgba(92,55,111,.13);--radius:24px}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(180deg,#fff 0%,#fbf7fd 100%);color:var(--dark);font-size:17px;line-height:1.65;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    .container{width:min(1120px,calc(100% - 32px));margin:0 auto}
+    .hero{position:relative;overflow:hidden;background:radial-gradient(circle at 15% 20%,rgba(255,255,255,.22),transparent 24%),radial-gradient(circle at 88% 8%,rgba(255,255,255,.18),transparent 22%),linear-gradient(135deg,var(--pink),var(--purple));color:white;padding:62px 0 54px}
+    .hero::before,.hero::after{content:"";position:absolute;border-radius:999px;background:rgba(255,255,255,.09)}
+    .hero::before{width:220px;height:220px;top:-90px;right:-70px}.hero::after{width:160px;height:160px;bottom:-70px;left:-40px}
+    .hero-content{position:relative;z-index:2;text-align:center}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(8px);font-size:14px;font-weight:800;letter-spacing:.2px;margin-bottom:20px}
+    .hero h1{font-size:clamp(2.15rem,8vw,4.8rem);line-height:1.05;letter-spacing:-1.7px;margin-bottom:16px}
+    .hero p{font-size:clamp(1.05rem,3.8vw,1.4rem);opacity:.95;max-width:760px;margin:0 auto 26px}
+    .hero-actions{display:flex;flex-direction:column;gap:12px;align-items:center;margin-top:28px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:14px 22px;border-radius:16px;font-weight:900;transition:.25s ease;border:0;cursor:pointer;font-size:16px}
+    .btn-primary{background:white;color:var(--purple-dark);box-shadow:0 10px 25px rgba(63,23,82,.18)}.btn-primary:hover{transform:translateY(-2px)}
+    .section{padding:64px 0}.section-soft{background:var(--light)}
+    .section-head{max-width:760px;margin:0 auto 34px;text-align:center}
+    .eyebrow{display:inline-block;color:var(--pink-dark);font-weight:900;text-transform:uppercase;letter-spacing:.12em;font-size:13px;margin-bottom:10px}
+    h2{font-size:clamp(1.9rem,6vw,3.1rem);line-height:1.1;letter-spacing:-.9px;margin-bottom:14px}
+    .section-head p,.lead{color:var(--gray);font-size:18px}
+    .overview{background:white;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;position:relative;overflow:hidden}
+    .overview::before{content:"";position:absolute;width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,rgba(255,107,157,.18),rgba(155,89,182,.15));top:-30px;right:-20px}
+    .cards{display:grid;grid-template-columns:1fr;gap:18px}
+    .card{background:white;border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:0 12px 32px rgba(84,47,99,.08);transition:.25s ease}
+    .card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(84,47,99,.13)}
+    .icon{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;font-size:28px;background:linear-gradient(135deg,rgba(255,107,157,.16),rgba(155,89,182,.14));margin-bottom:16px}
+    .card h3{font-size:1.18rem;margin-bottom:8px}.card p{color:var(--gray)}
+    .flow{display:grid;gap:14px;counter-reset:step}
+    .flow-item{display:grid;grid-template-columns:52px 1fr;gap:15px;align-items:center;padding:18px;background:white;border:1px solid var(--line);border-radius:18px;box-shadow:0 9px 26px rgba(84,47,99,.06)}
+    .flow-item::before{counter-increment:step;content:counter(step);width:46px;height:46px;border-radius:14px;display:grid;place-items:center;color:white;font-weight:900;background:linear-gradient(135deg,var(--pink),var(--purple));box-shadow:0 8px 20px rgba(155,89,182,.22)}
+    .flow-item strong{display:block;margin-bottom:2px}
+    .benefits{display:grid;gap:14px}
+    .benefit{display:flex;gap:12px;align-items:flex-start;background:white;border:1px solid var(--line);border-radius:16px;padding:17px 18px}.benefit span:first-child{font-size:22px;line-height:1.2}
+    .summary-box{margin-top:34px;display:grid;gap:16px;background:linear-gradient(135deg,#fff1f7,#f4ebfa);border:1px solid #efddec;border-radius:24px;padding:24px}.summary-box h3{font-size:1.25rem}
+    footer{padding:54px 0;background:#211829;color:white;text-align:center}footer h2{max-width:700px;margin:0 auto 14px;font-size:clamp(1.8rem,6vw,2.8rem)}footer p{color:#d8ccde;margin-bottom:22px}
+    .contact{margin:24px auto 0;max-width:620px;display:grid;gap:12px;grid-template-columns:1fr;text-align:left}
+    .contact-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:16px 18px;border-radius:16px}
+    .contact-label{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:#c6b5cf;font-weight:900;display:block;margin-bottom:3px}.muted{color:var(--gray)}
+    @media (min-width:700px){.hero{padding:86px 0 76px}.hero-actions{flex-direction:row;justify-content:center}.cards{grid-template-columns:repeat(2,1fr)}.cards .card:last-child{grid-column:1/-1}.benefits{grid-template-columns:repeat(2,1fr)}.contact{grid-template-columns:repeat(2,1fr)}}
+    @media (min-width:980px){body{font-size:18px}.section{padding:86px 0}.overview{padding:38px 42px}.cards{grid-template-columns:repeat(3,1fr)}.cards .card:last-child{grid-column:auto}.flow{grid-template-columns:repeat(2,1fr)}.flow-item:last-child{grid-column:1/-1}}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container hero-content">
+      <div class="badge">✨ Desenvolvido especialmente para você</div>
+      <h1>🍭 Sistema Chup-Chup da Lili</h1>
+      <p>Proposta de Sistema Digital Completo para organizar vendas, estoque, pedidos e finanças em um só lugar.</p>
+      <div class="hero-actions"><a class="btn btn-primary" href="#modulos">Ver como funciona ↓</a></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="section-head"><span class="eyebrow">Visão geral</span><h2>Seu negócio organizado de ponta a ponta</h2></div>
+        <div class="overview"><p class="lead">Será criado um sistema completo para o Chup-Chup da Lili, com <strong>painel de controle</strong>, <strong>loja online via QR Code</strong>, <strong>integração com WhatsApp</strong> e <strong>CRM financeiro</strong>. Tudo pensado para funcionar de forma simples, visual e rápida no celular.</p></div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="modulos">
+      <div class="container">
+        <div class="section-head"><span class="eyebrow">Módulos do sistema</span><h2>Tudo que a Lili precisa no dia a dia</h2><p>Ferramentas práticas para vender, controlar e acompanhar o negócio sem complicação.</p></div>
+        <div class="cards">
+          <article class="card"><div class="icon">🖥️</div><h3>Painel de Controle (Admin)</h3><p>A Lili acessa pelo celular ou computador, cadastra produtos, sabores, preços e controla o estoque em tempo real.</p></article>
+          <article class="card"><div class="icon">🛒</div><h3>Loja Online via QR Code</h3><p>O cliente escaneia o QR Code, escolhe o sabor e a quantidade e clica em um botão que abre o WhatsApp da Lili com o pedido pronto.</p></article>
+          <article class="card"><div class="icon">📲</div><h3>Integração com WhatsApp</h3><p>Ao confirmar o pedido pelo WhatsApp, o sistema registra a venda e dá baixa no estoque automaticamente.</p></article>
+          <article class="card"><div class="icon">✍️</div><h3>Venda Manual</h3><p>Para vendas feitas pessoalmente, a Lili escolhe o sabor, informa a quantidade e confirma. O estoque é atualizado na hora.</p></article>
+          <article class="card"><div class="icon">📊</div><h3>CRM Financeiro</h3><p>Painel com gastos, fluxo de caixa, vendas por dia, semana e mês, sabores mais vendidos e lucro estimado.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head"><span class="eyebrow">Fluxo de funcionamento</span><h2>Simples para vender. Simples para controlar.</h2></div>
+        <div class="flow">
+          <div class="flow-item"><div><strong>Lili cadastra os produtos</strong><span class="muted">Sabores, preços e estoque inicial no painel.</span></div></div>
+          <div class="flow-item"><div><strong>QR Code no ponto de venda</strong><span class="muted">O cliente acessa a loja pelo próprio celular.</span></div></div>
+          <div class="flow-item"><div><strong>Cliente escolhe o pedido</strong><span class="muted">Sabor, quantidade e botão “Enviar Pedido”.</span></div></div>
+          <div class="flow-item"><div><strong>WhatsApp abre com mensagem pronta</strong><span class="muted">A conversa chega organizada para confirmação.</span></div></div>
+          <div class="flow-item"><div><strong>Venda confirmada</strong><span class="muted">O sistema registra a venda e atualiza o estoque.</span></div></div>
+          <div class="flow-item"><div><strong>Venda manual também funciona</strong><span class="muted">Pedidos feitos na porta podem ser lançados direto no app.</span></div></div>
+          <div class="flow-item"><div><strong>Tudo vai para o CRM financeiro</strong><span class="muted">Histórico, caixa, vendas e desempenho ficam centralizados.</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-head"><span class="eyebrow">Benefícios</span><h2>Mais controle e menos trabalho manual</h2></div>
+        <div class="benefits">
+          <div class="benefit"><span>✅</span><span>Controle total do estoque pelo celular</span></div>
+          <div class="benefit"><span>✅</span><span>Reduz esquecimentos na baixa de produtos</span></div>
+          <div class="benefit"><span>✅</span><span>Histórico completo de vendas</span></div>
+          <div class="benefit"><span>✅</span><span>Relatório financeiro automático</span></div>
+          <div class="benefit"><span>✅</span><span>Fácil de usar, sem treinamento técnico</span></div>
+          <div class="benefit"><span>✅</span><span>Funciona 100% pelo celular</span></div>
+        </div>
+        <div class="summary-box"><h3>💡 Resultado esperado</h3><p>Um sistema simples para a Lili vender mais organizada, saber o que tem em estoque, acompanhar o dinheiro que entra e ter uma visão clara do negócio.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contato">
+    <div class="container">
+      <h2>Vamos começar? Entre em contato e transforme seu negócio!</h2>
+      <p>Seu sistema pode ser personalizado de acordo com a rotina real do Chup-Chup da Lili.</p>
+      <div class="contact">
+        <div class="contact-card"><span class="contact-label">Desenvolvedor</span><strong>Seu nome aqui</strong></div>
+        <div class="contact-card"><span class="contact-label">WhatsApp</span><strong>Seu número aqui</strong></div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', function(e){
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth'}); }
+      });
+    });
+  </script>
+</body>
+</html>
